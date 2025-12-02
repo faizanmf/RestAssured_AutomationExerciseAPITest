@@ -80,4 +80,54 @@ public class AutomationExcerciseTests extends BaseTest {
         Assert.assertEquals(res.jsonPath().getInt("responseCode"), 400);
         Assert.assertEquals(res.jsonPath().getString("message"), "Bad request, email or password parameter is missing in POST request.");
     }
+
+    @Test
+    public void DELETEVerifyLogin()
+    {
+        res = productAPI.deleteLogin();
+
+        Assert.assertEquals(res.getStatusCode(), 200, "Status code mismatch!");
+        Assert.assertEquals(res.jsonPath().getInt("responseCode"), 405);
+        Assert.assertEquals(res.jsonPath().getString("message"), "This request method is not supported.");
+    }
+
+    @Test
+    public void POSTVerifyLoginwithinvalid()
+    {
+        res = productAPI.verifyLoginInvalidDetails();
+        Assert.assertEquals(res.jsonPath().getInt("responseCode"), 404);
+        Assert.assertEquals(res.jsonPath().getString("message"), "User not found!");
+    }
+
+    @Test
+    public void POSTCreateUserAcc()
+    {
+        res = productAPI.POSTCreateUserAcc();
+        Assert.assertEquals(res.jsonPath().getInt("responseCode"), 201);
+        Assert.assertEquals(res.jsonPath().getString("message"), "User created!");
+    }
+
+    @Test
+    public void deleteUserAccount()
+    {
+        res = productAPI.deleteUserAccount();
+        Assert.assertEquals(res.jsonPath().getInt("responseCode"), 200);
+        Assert.assertEquals(res.jsonPath().getString("message"), "Account deleted!");
+    }
+
+    @Test
+    public void putUpdateUserAcc()
+    {
+        res = productAPI.updateUserAccount();
+        Assert.assertEquals(res.jsonPath().getInt("responseCode"), 200);
+        Assert.assertEquals(res.jsonPath().getString("message"), "User updated!");
+    }
+
+    @Test
+    public void getAcctDetailByEmail()
+    {
+        res = productAPI.getDeletedUserDetail();
+        Assert.assertEquals(res.jsonPath().getInt("responseCode"), 404);
+        Assert.assertEquals(res.jsonPath().getString("message"), "Account not found with this email, try another email!");
+    }
 }
