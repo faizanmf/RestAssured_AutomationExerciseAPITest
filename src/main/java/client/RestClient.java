@@ -87,4 +87,91 @@ public class RestClient {
                 .response();
     }
 
+    public Response deleteDynamic(String endpoint,
+                                Map<String, String> headers,
+                                Object body,
+                                Map<String, ?> formParams,
+                                String contentType) {
+
+        RequestSpecification req = RestAssured.given().spec(RestAssured.requestSpecification);
+
+        if (headers != null)
+            req.headers(headers);
+
+        if (body != null)
+            req.body(body);
+
+        if (formParams != null)
+            req.formParams(formParams);
+
+        if (contentType != null)
+            req.contentType(contentType);
+
+        return req
+                .when()
+                .delete(endpoint)
+                .then()
+                .log().all()
+                .extract()
+                .response();
+    }
+
+    public Response getDynamic(String endpoint,
+                                  Map<String, String> headers,
+                                  Object body,
+                                  Map<String, ?> formParams,
+                                  String contentType) {
+
+        RequestSpecification req = RestAssured.given().spec(RestAssured.requestSpecification);
+
+        if (headers != null)
+            req.headers(headers);
+
+        if (body != null)
+            req.body(body);
+
+        if (formParams != null)
+            req.formParams(formParams);
+
+        if (contentType != null)
+            req.contentType(contentType);
+
+        return req
+                .when()
+                .get(endpoint)
+                .then()
+                .log().all()
+                .extract()
+                .response();
+    }
+
+    public Response putDynamic(String endpoint,
+                                Map<String, String> headers,
+                                Object body,
+                                Map<String, ?> formParams,
+                                String contentType) {
+
+        RequestSpecification req = RestAssured.given().spec(RestAssured.requestSpecification);
+
+        if (headers != null)
+            req.headers(headers);
+
+        if (body != null)
+            req.body(body);
+
+        if (formParams != null)
+            req.formParams(formParams);
+
+        if (contentType != null)
+            req.contentType(contentType);
+
+        return req
+                .when()
+                .put(endpoint)
+                .then()
+                .log().all()
+                .extract()
+                .response();
+    }
+
 }
