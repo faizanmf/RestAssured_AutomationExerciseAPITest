@@ -63,5 +63,18 @@ public class ProductAPIHelper  {
                 "application/x-www-form-urlencoded");
     }
 
+    public Response postLoginWithoutEmail()
+    {
+        Map<String, Object> LoginformParams = new HashMap<>();
+        LoginformParams.put("password", "Test@123");
+
+
+        return client.postDynamic(APIEndpoints.POST_Login,
+                null,
+                null,
+                LoginformParams,
+                "application/x-www-form-urlencoded");
+    }
+
 
 }

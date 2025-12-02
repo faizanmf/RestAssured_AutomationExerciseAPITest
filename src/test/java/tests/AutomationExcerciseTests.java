@@ -72,4 +72,12 @@ public class AutomationExcerciseTests extends BaseTest {
         Assert.assertEquals(res.getStatusCode(), 200, "Status code mismatch!");
         Assert.assertEquals(res.jsonPath().getString("message"), "User exists!");
     }
+
+    @Test
+    public void POSTVerifyLoginWithoutEmail()
+    {
+        res = productAPI.postLoginWithoutEmail();
+        Assert.assertEquals(res.jsonPath().getInt("responseCode"), 400);
+        Assert.assertEquals(res.jsonPath().getString("message"), "Bad request, email or password parameter is missing in POST request.");
+    }
 }
